@@ -1,28 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ObjectClicker : MonoBehaviour
 {
+    private Transform highlight;
+    private Transform selection;
+    private RaycastHit raycastHit;
+
+
     void Update()
     {
+        if(highlight != null)
+        {
+            highlight.gameObject.GetComponent<Outline>().enabled = false;
+            highlight = null;
+        }
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
+        {
+            highlight = raycastHit.transform;
+            if(highlight.CompareTag("Selectable") && highlight != selection)
+            {
+                if (highlight.gameObject.GetComponent<Outline>() != null)
+                {
+                    highlight.gameObject.GetComponent<Outline>().enabled = true;
+                }
+                else
+                {
+                    Outline outline = highlight.gameObject.AddComponent<Outline>();
+                    outline.enabled = true;
+                    highlight.gameObject.GetComponent<Outline>().OutlineColor = Color.magenta;
+                    highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
+                }
+            }
+            else
+            {
+                highlight = null;
+            }
+        }
+
         if(Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if(Physics.Raycast(ray, out hit, 100.0f))
+            if(highlight)
             {
-                if(hit.transform != null)
+                if (selection != null)
                 {
-                    PrintName(hit.transform.gameObject);
+                    selection.gameObject.GetComponent<Outline>().enabled = true;
+                }
+                selection = raycastHit.transform;
+                selection.gameObject.GetComponent<Outline>().enabled = true;
+                highlight = null;
+            }
+            else
+            {
+                if(selection)
+                {
+                    selection.gameObject.GetComponent<Outline>().enabled = false;
+                    selection = null;
                 }
             }
         }
-    }
-
-    public void PrintName(GameObject go)
-    {
-        print(go.name);
     }
 }
