@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class ObjectClicker : MonoBehaviour
 {
+    public static Action OnButtonPressed;
     private Transform highlight;
     private Transform selection;
     private RaycastHit raycastHit;
