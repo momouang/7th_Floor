@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 8860995450352935410}
   - component: {fileID: 8860995450352935411}
   - component: {fileID: 8860995450352935415}
+  - component: {fileID: 1537143497}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -155,8 +156,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8860995450352935408}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75300044, z: 0}
+  m_LocalRotation: {x: -0.045862086, y: -0.02361274, z: 0.0011037524, w: -0.99866813}
+  m_LocalPosition: {x: 0.006, y: 0.877, z: 0.119}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -228,6 +229,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 300
   playerBody: {fileID: 8860995450427931537}
+--- !u!114 &1537143497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8860995450352935408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8860995450427931532
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +291,7 @@ Transform:
   m_GameObject: {fileID: 8860995450427931532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1.5032, z: 1}
+  m_LocalScale: {x: 1, y: 1.4743083, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8860995450338277554}
@@ -298,7 +333,7 @@ MonoBehaviour:
   controller: {fileID: 8860995450427931534}
   speed: 5
   gravity: -9.8
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 1062843882588216143}
   groundDistance: 0.4
   footStep: {fileID: 1266148306}
   isPlayedFootstep: 0
