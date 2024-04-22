@@ -8,12 +8,19 @@ public class ButtonScript : MonoBehaviour
     public UnityEvent PressButton;
     public UnityEvent OneSecondCommand;
 
+    public bool isTriggered;
+
     public float waitTime = 1f;
 
     private void OnMouseUpAsButton()
     {
-        PressButton.Invoke();
-        StartCoroutine(WaitOneSecondandDo());
+        if(!isTriggered)
+        {
+            PressButton.Invoke();
+            StartCoroutine(WaitOneSecondandDo());
+
+            isTriggered = true;
+        }
     }
 
     IEnumerator WaitOneSecondandDo()

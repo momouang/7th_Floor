@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7375378645218922114}
-  m_LocalRotation: {x: -0.000000056067456, y: 0.9982376, z: 0.00000005948788, w: 0.059344362}
+  m_LocalRotation: {x: 0, y: 0.9982378, z: 0, w: 0.059341233}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -259,6 +259,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: be1c9f1cd4ffa46e5a35eca404562e1a, type: 2}
+    - target: {fileID: 1667878900234645947, guid: 1d06d806570064a419061241da0ec0d8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 4247530973790544526, guid: 1d06d806570064a419061241da0ec0d8, type: 3}
+    - target: {fileID: 4348218917417023890, guid: 1d06d806570064a419061241da0ec0d8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 4218272456290611267, guid: 1d06d806570064a419061241da0ec0d8, type: 3}
     - target: {fileID: 8128668236925612103, guid: 1d06d806570064a419061241da0ec0d8, type: 3}
       propertyPath: m_Name
       value: spider
