@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 9221264794430349466}
   - component: {fileID: 1260311827846876573}
   - component: {fileID: 4851194166396971579}
+  - component: {fileID: -5743477740341239148}
   m_Layer: 0
-  m_Name: Spider
+  m_Name: spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,6 +249,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &-5743477740341239148
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7375378645218922114}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &4833186726428748113
 PrefabInstance:
   m_ObjectHideFlags: 0

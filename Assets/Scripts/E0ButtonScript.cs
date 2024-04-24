@@ -6,28 +6,31 @@ using System;
 
 public class E0ButtonScript : MonoBehaviour
 {
-    public static Action OnDoorClosed;
+    public DoorScript Door01;
+    public DoorScript Door02;
 
     public UnityEvent PressButton;
-    public UnityEvent PressCloseButton;
     public UnityEvent OneSecondCommand;
+    public UnityEvent OnlastTimeDoorOpened;
     public int OpenCount = 0;
 
+    public bool isPressed;
     public bool isTriggered;
 
     public float waitTime = 1f;
 
     private void OnMouseUpAsButton()
     {
-
-        if(!isTriggered)
+        if(!isTriggered && Door01.isControllable && Door02.isClosed)
         {
             PressButton.Invoke();
             StartCoroutine(WaitOneSecondandDo());
             OpenCount++;
+            isPressed = true;
 
             if(OpenCount >= 3)
             {
+                StartCoroutine(OpenDoor());
                 isTriggered = true;
             }
         }
@@ -37,5 +40,11 @@ public class E0ButtonScript : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         OneSecondCommand.Invoke();
+    }
+
+    IEnumerator OpenDoor()
+    {
+        yield return new WaitForSeconds(waitTime);
+        OnlastTimeDoorOpened.Invoke();
     }
 }
