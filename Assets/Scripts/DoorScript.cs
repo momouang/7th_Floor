@@ -6,6 +6,10 @@ public class DoorScript : MonoBehaviour
 {
     private Animator animator;
 
+    public bool isOpened;
+    public bool isClosed;
+    public bool isControllable;
+
 
     private void Start()
     {
@@ -15,12 +19,18 @@ public class DoorScript : MonoBehaviour
     public void OpenDoor()
     {
         animator.SetTrigger("isOpened");
+        isOpened = true;
+        isClosed = false;
+        isControllable = false;
 
     }
 
     public void CloseDoor()
     {
         animator.SetTrigger("isClosed");
+        isClosed = true;
+        isOpened = false;
+        isControllable = true;
         //StartCoroutine(Closing());
     }
 
