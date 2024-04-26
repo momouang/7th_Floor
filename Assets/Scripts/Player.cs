@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     public float speed = 12f;
     public float gravity = -9.8f;
+    public float startDelayTime = 2f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -53,6 +54,5 @@ public class Player : MonoBehaviour
         {
             footStep.Stop();
         }
-
-    }
+        }
 }
