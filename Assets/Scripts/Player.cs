@@ -49,5 +49,10 @@ public class Player : MonoBehaviour
             isPlayedFootstep = false;
         }
 
+        if(GameManager.isPaused)
+        {
+            footStep.Stop();
+        }
+
     }
 }
