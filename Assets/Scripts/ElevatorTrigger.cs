@@ -7,7 +7,7 @@ public class ElevatorTrigger : MonoBehaviour
 {
     public UnityEvent OnTriggered;
     public UnityEvent OnDelayed;
-    public bool isTriggered;
+    public bool isTriggered = false;
 
     public float waitTime = 1f;
 
@@ -20,6 +20,7 @@ public class ElevatorTrigger : MonoBehaviour
                 OnTriggered?.Invoke();
                 StartCoroutine(OnDelay());
                 isTriggered = true;
+
             }
         }
     }

@@ -6,6 +6,7 @@ using System;
 
 public class E0ButtonScript : MonoBehaviour
 {
+    [Header("Button Events")]
     public DoorScript Door01;
     public DoorScript Door02;
 
@@ -18,6 +19,11 @@ public class E0ButtonScript : MonoBehaviour
     public bool isTriggered;
 
     public float waitTime = 1f;
+
+    [Header("Trigger Objects")]
+    public GameObject BrokenLevel;
+    public GameObject BrokenLevel02;
+    public GameObject E1;
 
     private void OnMouseUpAsButton()
     {
@@ -34,6 +40,22 @@ public class E0ButtonScript : MonoBehaviour
                 isTriggered = true;
             }
         }
+
+        if (OpenCount == 1)
+        {
+            StartCoroutine(ChangeBrokenLevel());
+        }
+
+        if (OpenCount == 2)
+        {
+            StartCoroutine(ChangeBrokenLevel02());
+        }
+
+        if(OpenCount == 3)
+        {
+            StartCoroutine(SetActiveElevator());
+            Door02.isDoorNeedClose = false;
+        }
     }
 
     IEnumerator WaitOneSecondandDo()
@@ -46,5 +68,27 @@ public class E0ButtonScript : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         OnlastTimeDoorOpened.Invoke();
+    }
+
+    IEnumerator ChangeBrokenLevel()
+    {
+        yield return new WaitForSeconds(2f);
+        BrokenLevel02.SetActive(false); 
+    }
+
+    IEnumerator ChangeBrokenLevel02()
+    {
+        yield return new WaitForSeconds(2f);
+        BrokenLevel.SetActive(false);
+        BrokenLevel02.SetActive(true);
+    }
+
+    IEnumerator SetActiveElevator()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        BrokenLevel02.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        //E1.SetActive(true);
     }
 }

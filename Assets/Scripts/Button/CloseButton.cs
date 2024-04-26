@@ -45,6 +45,7 @@ public class CloseButton : MonoBehaviour
         }
     }
 
+
     IEnumerator ChangeBrokenLevel()
     {
         yield return new WaitForSeconds(2f);

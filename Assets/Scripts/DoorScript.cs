@@ -10,6 +10,11 @@ public class DoorScript : MonoBehaviour
     public bool isClosed;
     public bool isControllable;
 
+    public bool isDoorNeedClose;
+    public AudioSource CloseDoorSound;
+
+    public ElevatorTrigger elevatorTrigger;
+
 
     private void Start()
     {
@@ -23,6 +28,11 @@ public class DoorScript : MonoBehaviour
         isClosed = false;
         isControllable = false;
 
+        if(isDoorNeedClose && elevatorTrigger.isTriggered)
+        {
+            StartCoroutine(AutoCloseDoor());
+        }
+
     }
 
     public void CloseDoor()
@@ -33,6 +43,14 @@ public class DoorScript : MonoBehaviour
         isControllable = true;
         //StartCoroutine(Closing());
     }
+
+    IEnumerator AutoCloseDoor()
+    {
+        yield return new WaitForSeconds(3f);
+        CloseDoor();
+        CloseDoorSound.Play();
+    }
+
 
     /*IEnumerator Closing()
     {

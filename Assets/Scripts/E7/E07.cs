@@ -17,6 +17,7 @@ public class E07 : MonoBehaviour
     public GameObject ribbt5;
     public GameObject ribbt6;
     public GameObject ribbt7;
+    public GameObject Bunny;
 
     public bool okok = false;
 
@@ -25,12 +26,12 @@ public class E07 : MonoBehaviour
     public Light lightToControl;  // Assign this through the Inspector
     private float totalTime = 8.9f;
     private int flickerCount = 12;
-    private float minOffDuration = 0.1f; // ¹ØµÆ×î¶Ì³ÖÐøÊ±¼ä
-    private float maxOffDuration = 0.5f; // ¹ØµÆ×î³¤³ÖÐøÊ±¼ä
-    private float maxOnDuration = 0.8f; // ¿ªµÆ×î³¤³ÖÐøÊ±¼ä
+    private float minOffDuration = 0.1f; // ï¿½Øµï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    private float maxOffDuration = 0.5f; // ï¿½Øµï¿½ï¿½î³¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    private float maxOnDuration = 0.8f; // ï¿½ï¿½ï¿½ï¿½ï¿½î³¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     private float minInterval = 0.2f;
 
-    public Camera cameraToAdjust; // Òªµ÷ÕûµÄÏà»ú
+    public Camera cameraToAdjust; // Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private float initialFOV;
     private float increaseDuration = 8.9f;
     private float normalizeDuration = 0.5f;
@@ -46,8 +47,8 @@ public class E07 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        // ¼ì²éÅö×²µÄ¶ÔÏóÊÇ·ñÊÇÍæ¼Ò
-        if (other.CompareTag("Player")) // È·±£Íæ¼Ò¶ÔÏóµÄTagÉèÖÃÎª"Player"
+        // ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        if (other.CompareTag("Player")) // È·ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½Tagï¿½ï¿½ï¿½ï¿½Îª"Player"
         {
            
             PerformAction();
@@ -129,6 +130,7 @@ public class E07 : MonoBehaviour
         ribbt6.SetActive(false);
         ribbt7.SetActive(false);
         airwall.SetActive(false);
+        Bunny.SetActive(true);
     }
 
     public void OpenDoor3()
@@ -152,58 +154,58 @@ public class E07 : MonoBehaviour
 
     IEnumerator DoorPositions1()
     {
-        float duration = 0.5f; // µ÷Õû³ÖÐøÊ±¼ä£¬1Ãë
-        float elapsed = 0.0f; // ÒÑ¾­¹ýµÄÊ±¼ä
-        float distance = 1.04f; // ÒÆ¶¯µÄ¾àÀë
+        float duration = 0.5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬1ï¿½ï¿½
+        float elapsed = 0.0f; // ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+        float distance = 1.04f; // ï¿½Æ¶ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
 
-        Vector3 door1StartPosition = door1.position; // Door1³õÊ¼Î»ÖÃ
-        Vector3 door2StartPosition = door2.position; // Door2³õÊ¼Î»ÖÃ
+        Vector3 door1StartPosition = door1.position; // Door1ï¿½ï¿½Ê¼Î»ï¿½ï¿½
+        Vector3 door2StartPosition = door2.position; // Door2ï¿½ï¿½Ê¼Î»ï¿½ï¿½
 
         Vector3 door1EndPosition = new Vector3(door1StartPosition.x, door1StartPosition.y, door1StartPosition.z + distance);
         Vector3 door2EndPosition = new Vector3(door2StartPosition.x, door2StartPosition.y, door2StartPosition.z - distance);
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime; // ¸üÐÂÒÑ¹ýÊ±¼ä
-            float fraction = elapsed / duration; // ¼ÆËãÍê³ÉµÄ²¿·Ö
+            elapsed += Time.deltaTime; // ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½Ê±ï¿½ï¿½
+            float fraction = elapsed / duration; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉµÄ²ï¿½ï¿½ï¿½
 
-            // Ê¹ÓÃLerpÏßÐÔ²åÖµ¼ÆËãµ±Ç°Î»ÖÃ
+            // Ê¹ï¿½ï¿½Lerpï¿½ï¿½ï¿½Ô²ï¿½Öµï¿½ï¿½ï¿½ãµ±Ç°Î»ï¿½ï¿½
             door1.position = Vector3.Lerp(door1StartPosition, door1EndPosition, fraction);
             door2.position = Vector3.Lerp(door2StartPosition, door2EndPosition, fraction);
 
             yield return null;
         }
 
-        // È·±£ÔÚÑ­»·½áÊøÊ±ÃÅµÄÎ»ÖÃ¾«È·ÉèÖÃ
+        // È·ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Åµï¿½Î»ï¿½Ã¾ï¿½È·ï¿½ï¿½ï¿½ï¿½
         door1.position = door1EndPosition;
         door2.position = door2EndPosition;
     }
 
     IEnumerator DoorPositions2()
     {
-        float duration = 0.5f; // µ÷Õû³ÖÐøÊ±¼ä£¬1Ãë
-        float elapsed = 0.0f; // ÒÑ¾­¹ýµÄÊ±¼ä
-        float distance = 1.04f; // ÒÆ¶¯µÄ¾àÀë
+        float duration = 0.5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬1ï¿½ï¿½
+        float elapsed = 0.0f; // ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+        float distance = 1.04f; // ï¿½Æ¶ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
 
-        Vector3 door1StartPosition = door1.position; // Door1³õÊ¼Î»ÖÃ
-        Vector3 door2StartPosition = door2.position; // Door2³õÊ¼Î»ÖÃ
+        Vector3 door1StartPosition = door1.position; // Door1ï¿½ï¿½Ê¼Î»ï¿½ï¿½
+        Vector3 door2StartPosition = door2.position; // Door2ï¿½ï¿½Ê¼Î»ï¿½ï¿½
 
         Vector3 door1EndPosition = new Vector3(door1StartPosition.x, door1StartPosition.y, door1StartPosition.z - distance);
         Vector3 door2EndPosition = new Vector3(door2StartPosition.x, door2StartPosition.y, door2StartPosition.z + distance);
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime; // ¸üÐÂÒÑ¹ýÊ±¼ä
-            float fraction = elapsed / duration; // ¼ÆËãÍê³ÉµÄ²¿·Ö
+            elapsed += Time.deltaTime; // ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½Ê±ï¿½ï¿½
+            float fraction = elapsed / duration; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉµÄ²ï¿½ï¿½ï¿½
 
-            // Ê¹ÓÃLerpÏßÐÔ²åÖµ¼ÆËãµ±Ç°Î»ÖÃ
+            // Ê¹ï¿½ï¿½Lerpï¿½ï¿½ï¿½Ô²ï¿½Öµï¿½ï¿½ï¿½ãµ±Ç°Î»ï¿½ï¿½
             door1.position = Vector3.Lerp(door1StartPosition, door1EndPosition, fraction);
             door2.position = Vector3.Lerp(door2StartPosition, door2EndPosition, fraction);
 
             yield return null;
         }
 
-        // È·±£ÔÚÑ­»·½áÊøÊ±ÃÅµÄÎ»ÖÃ¾«È·ÉèÖÃ
+        // È·ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Åµï¿½Î»ï¿½Ã¾ï¿½È·ï¿½ï¿½ï¿½ï¿½
         door1.position = door1EndPosition;
         door2.position = door2EndPosition;
     }
@@ -211,29 +213,29 @@ public class E07 : MonoBehaviour
     IEnumerator FlickerLight()
     {
         float timeRemaining = totalTime;
-        lightToControl.enabled = true; // È·±£³õÊ¼×´Ì¬µÆÊÇ¿ªµÄ
-        float lastActionTime = 0.0f; // ¼ÇÂ¼ÉÏÒ»´Î¶¯×÷µÄÊ±¼ä
+        lightToControl.enabled = true; // È·ï¿½ï¿½ï¿½ï¿½Ê¼×´Ì¬ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½
+        float lastActionTime = 0.0f; // ï¿½ï¿½Â¼ï¿½ï¿½Ò»ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 
-        for (int i = 0; i < flickerCount - 1; i++) // ×îºóÒ»´ÎÇÐ»»ºó±£³Ö¿ªÆô×´Ì¬£¬ËùÒÔÑ­»·´ÎÊý¼õ1
+        for (int i = 0; i < flickerCount - 1; i++) // ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ó±£³Ö¿ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1
         {
             float nextActionDuration = lightToControl.enabled ? Random.Range(minInterval, maxOnDuration) : Random.Range(minOffDuration, maxOffDuration);
             float maxNextActionTime = Mathf.Max(minInterval, timeRemaining - nextActionDuration - minInterval * (flickerCount - i - 1));
             float nextActionTime = Random.Range(minInterval, maxNextActionTime);
 
-            // µÈ´ýµ½ÏÂ´ÎÇÐ»»
+            // ï¿½È´ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½Ð»ï¿½
             yield return new WaitForSeconds(nextActionTime);
-            lightToControl.enabled = !lightToControl.enabled; // ÇÐ»»µÆ¹â×´Ì¬
+            lightToControl.enabled = !lightToControl.enabled; // ï¿½Ð»ï¿½ï¿½Æ¹ï¿½×´Ì¬
 
-            // ¸üÐÂÊ£ÓàÊ±¼ä
+            // ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½Ê±ï¿½ï¿½
             timeRemaining -= (nextActionTime + nextActionDuration);
             lastActionTime = Time.time;
         }
 
-        // È·±£×îºóµÆÊÇ¿ª×ÅµÄ
+        // È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Åµï¿½
         if (!lightToControl.enabled)
         {
             lightToControl.enabled = true;
-            yield return new WaitForSeconds(totalTime - (Time.time - lastActionTime)); // µÈ´ýÊ£ÓàÊ±¼ä
+            yield return new WaitForSeconds(totalTime - (Time.time - lastActionTime)); // ï¿½È´ï¿½Ê£ï¿½ï¿½Ê±ï¿½ï¿½
         }
     }
 
@@ -241,7 +243,7 @@ public class E07 : MonoBehaviour
     {
         float timeElapsed = 0f;
 
-        // Ôö¼ÓFOV
+        // ï¿½ï¿½ï¿½ï¿½FOV
         while (timeElapsed < increaseDuration)
         {
             cameraToAdjust.fieldOfView = Mathf.Lerp(initialFOV, targetFOV, timeElapsed / increaseDuration);
@@ -251,12 +253,12 @@ public class E07 : MonoBehaviour
 
         cameraToAdjust.fieldOfView = targetFOV;
 
-        // »Ö¸´Ô­Ê¼FOV
+        // ï¿½Ö¸ï¿½Ô­Ê¼FOV
         float normalizeElapsed = 0f;
         while (normalizeElapsed < normalizeDuration)
         {
             float t = normalizeElapsed / normalizeDuration;
-            t = t * t * t * (t * (6f * t - 15f) + 10f);  // Ease OutÐ§¹û
+            t = t * t * t * (t * (6f * t - 15f) + 10f);  // Ease OutÐ§ï¿½ï¿½
             cameraToAdjust.fieldOfView = Mathf.Lerp(targetFOV, initialFOV, t);
             normalizeElapsed += Time.deltaTime;
             yield return null;
