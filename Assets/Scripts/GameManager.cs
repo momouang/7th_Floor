@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
         if(isPaused)
         {
+            
             pauseScene.SetActive(true);
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
