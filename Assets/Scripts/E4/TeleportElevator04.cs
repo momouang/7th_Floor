@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TeleportElevator4 : MonoBehaviour
+public class TeleportElevator04 : MonoBehaviour
 {
     public Transform fakeCorridor; 
     public Transform realCorridor; 
