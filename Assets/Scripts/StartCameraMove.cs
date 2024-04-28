@@ -4,16 +4,16 @@ using Cinemachine;
 
 public class StartCameraMove : MonoBehaviour
 {
-    public CinemachineFreeLook GameCam;
-    public CinemachineFreeLook PlayerCam;
+    //public CinemachineFreeLook GameCam;
+    public CinemachineVirtualCamera PlayerCam;
     public CinemachineVirtualCamera StartUICam;
-    public int gameCamPriority = 0; 
+    //public int gameCamPriority = 0; 
     public int PlayerCamPriority = 0; 
     public int startUICamPriority = 10; 
     public float fadeDuration = 3.5f;
 
-    public AudioClip doorSound;
-    private AudioSource audioSource;
+    //public AudioClip doorSound;
+    public AudioSource doorSound;
 
     private bool isSwitching = false;
 
@@ -23,11 +23,10 @@ public class StartCameraMove : MonoBehaviour
 
     void Start()
     {
-        GameCam.Priority = gameCamPriority;
+        //GameCam.Priority = gameCamPriority;
         StartUICam.Priority = startUICamPriority;
         PlayerCam.Priority = PlayerCamPriority;
         //Time.timeScale = 0f;
-        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -51,16 +50,17 @@ public class StartCameraMove : MonoBehaviour
         if (DoorAnimation != null)
         {
             DoorAnimation.SetTrigger("OpenDoor");
-            GameCam.Priority = startUICamPriority;
+            //GameCam.Priority = startUICamPriority;
             StartUICam.Priority = 0;
+            
             yield return null; 
         }
 
-        if (doorSound != null && audioSource != null)
+        if (doorSound != null)
         {
-            audioSource.PlayOneShot(doorSound);
+            doorSound.Play();
             yield return new WaitForSeconds(fadeDuration); 
-            GameCam.Priority = 0;
+            //GameCam.Priority = 0;
             PlayerCam.Priority = startUICamPriority ;
 
             isControllable = true;
