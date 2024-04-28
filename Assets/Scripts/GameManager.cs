@@ -25,12 +25,17 @@ public class GameManager : MonoBehaviour
             pauseScene.SetActive(true);
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
+
+            AudioListener.pause = true;
+            
         }
         else
         {
             pauseScene.SetActive(false);
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
+
+            AudioListener.pause = false;
         }
     }
 
