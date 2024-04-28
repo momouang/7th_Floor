@@ -51,12 +51,20 @@ public class DoorScript : MonoBehaviour
         CloseDoorSound.Play();
     }
 
-
-    /*IEnumerator Closing()
+        public void Reset()
     {
-        yield return new WaitForSeconds(5f);
+        isOpened = false;
+    }
 
-        animator.SetTrigger("isClosed");
 
-    }*/
+    // IEnumerator Closing()
+    // {
+    //     yield return new WaitForSeconds(3f);
+
+    //     animator.SetTrigger("isClosed");
+    //     isClosed = true;
+    //     isOpened = false;
+    //     isControllable = true;
+
+    // }
 }

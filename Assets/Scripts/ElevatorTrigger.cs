@@ -24,6 +24,16 @@ public class ElevatorTrigger : MonoBehaviour
             }
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            if(isTriggered)
+            {
+                isTriggered = false;
+            }
+        }
+    }
 
     IEnumerator OnDelay()
     {
