@@ -1,15 +1,69 @@
+// using UnityEngine;
+
+// public class TeleportController : MonoBehaviour
+// {
+//     public Transform fakeCorridor; 
+//     public Transform realCorridor; 
+//     public GameObject player; 
+//     private CharacterController controller; // CharacterController 
+
+//     private void Start()
+//     {
+//         // CharacterController 
+//         controller = player.GetComponent<CharacterController>();
+//         if (controller == null)
+//         {
+//             Debug.LogError("CharacterController component not found on the player object.");
+//         }
+//     }
+
+//     private void OnTriggerEnter(Collider other)
+//     {
+//         Debug.Log("Trigger Entered by: " + other.name);
+//         if (other.gameObject == player)
+//         {
+//             Debug.Log("Teleporting player");
+//             TeleportPlayer();
+//         }
+//     }
+
+//     void TeleportPlayer()
+//     {
+//         Vector3 playerRelativePosition = fakeCorridor.InverseTransformPoint(player.transform.position);
+//         Quaternion playerRelativeRotation = Quaternion.Inverse(fakeCorridor.rotation) * player.transform.rotation;
+
+//         Vector3 newPlayerPosition = realCorridor.TransformPoint(playerRelativePosition);
+//         Quaternion newPlayerRotation = realCorridor.rotation * playerRelativeRotation;
+
+//         // CharacterController
+//         controller.enabled = false;
+
+//         //
+//         player.transform.position = newPlayerPosition;
+//         player.transform.rotation = newPlayerRotation;
+
+//         // CharacterController
+//         controller.enabled = true;
+
+//         Debug.Log("Teleported to new position: " + player.transform.position);
+//     }
+// }
+
 using UnityEngine;
 
 public class TeleportController : MonoBehaviour
 {
-    public Transform fakeCorridor; // 假走廊的参考点
-    public Transform realCorridor; // 真走廊的参考点
-    public GameObject player; // 玩家对象
-    private CharacterController controller; // CharacterController 变量声明
+    public Transform fakeCorridor;
+    public Transform[] realCorridors; 
+    public GameObject player; 
+    private CharacterController controller; 
+    public DoorScript DoorScript;
+    public IsEnteredElevator IsEnteredElevator;
+    public GameObject ElevatorTrigger;
 
     private void Start()
     {
-        // 获取 CharacterController 组件
+        ElevatorTrigger.SetActive(false);
         controller = player.GetComponent<CharacterController>();
         if (controller == null)
         {
@@ -19,34 +73,40 @@ public class TeleportController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Entered by: " + other.name);
+        //Debug.Log("Trigger Entered by: " + other.name);
+        Debug.Log(DoorScript.isOpened);
+        Debug.Log(IsEnteredElevator.isEntered);
         if (other.gameObject == player)
         {
-            Debug.Log("Teleporting player");
-            TeleportPlayer();
+            //Debug.Log("Teleporting player");
+            if(DoorScript.isOpened && IsEnteredElevator.isEntered){
+                ElevatorTrigger.SetActive(true);
+                TeleportPlayer();
+                IsEnteredElevator.Reset();
+                DoorScript.Reset();
+            }else{
+                ElevatorTrigger.SetActive(false);
+            }
         }
     }
 
     void TeleportPlayer()
     {
+        Transform selectedRealCorridor = realCorridors[Random.Range(0, realCorridors.Length)];
+
         Vector3 playerRelativePosition = fakeCorridor.InverseTransformPoint(player.transform.position);
         Quaternion playerRelativeRotation = Quaternion.Inverse(fakeCorridor.rotation) * player.transform.rotation;
 
-        Vector3 newPlayerPosition = realCorridor.TransformPoint(playerRelativePosition);
-        Quaternion newPlayerRotation = realCorridor.rotation * playerRelativeRotation;
+        Vector3 newPlayerPosition = selectedRealCorridor.TransformPoint(playerRelativePosition);
+        Quaternion newPlayerRotation = selectedRealCorridor.rotation * playerRelativeRotation;
 
-        // 禁用CharacterController
         controller.enabled = false;
 
-        // 更新位置和旋转
         player.transform.position = newPlayerPosition;
         player.transform.rotation = newPlayerRotation;
 
-        // 重新启用CharacterController
         controller.enabled = true;
 
-        Debug.Log("Teleported to new position: " + player.transform.position);
+        //Debug.Log("Teleported to new position: " + player.transform.position);
     }
-
-
 }

@@ -51,6 +51,11 @@ public class DoorScript : MonoBehaviour
         CloseDoorSound.Play();
     }
 
+        public void Reset()
+    {
+        isOpened = false;
+    }
+
 
     /*IEnumerator Closing()
     {
