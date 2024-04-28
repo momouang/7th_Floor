@@ -15,7 +15,7 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        if(StartCameraMove.isControllable)
+        if(StartCameraMove.isPlayerControllable)
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

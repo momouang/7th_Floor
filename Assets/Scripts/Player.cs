@@ -29,29 +29,31 @@ public class Player : MonoBehaviour
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
+        if (StartCameraMove.isPlayerControllable)
+        {
+            float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        if(StartCameraMove.isControllable)
-        {
+        
             controller.Move(move * speed * Time.deltaTime);
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
-        }
 
-        if(move.magnitude >=0.1 && !isPlayedFootstep)
-        {
-            footStep.Play();
-            isPlayedFootstep = true;
-        }
+            if (move.magnitude >= 0.1 && !isPlayedFootstep)
+            {
+                footStep.Play();
+                isPlayedFootstep = true;
+            }
 
-        if(move.magnitude < 0.01 && isPlayedFootstep)
-        {
-            footStep.Stop();
-            isPlayedFootstep = false;
+            if (move.magnitude < 0.01 && isPlayedFootstep)
+            {
+                footStep.Stop();
+                isPlayedFootstep = false;
+            }
         }
+   
 
         if(GameManager.isPaused)
         {
