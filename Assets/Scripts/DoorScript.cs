@@ -57,11 +57,14 @@ public class DoorScript : MonoBehaviour
     }
 
 
-    /*IEnumerator Closing()
-    {
-        yield return new WaitForSeconds(5f);
+    // IEnumerator Closing()
+    // {
+    //     yield return new WaitForSeconds(3f);
 
-        animator.SetTrigger("isClosed");
+    //     animator.SetTrigger("isClosed");
+    //     isClosed = true;
+    //     isOpened = false;
+    //     isControllable = true;
 
-    }*/
+    // }
 }

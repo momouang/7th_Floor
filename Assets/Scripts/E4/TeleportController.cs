@@ -49,6 +49,7 @@
 //     }
 // }
 
+using System.Collections;
 using UnityEngine;
 
 public class TeleportController : MonoBehaviour
@@ -73,25 +74,26 @@ public class TeleportController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Trigger Entered by: " + other.name);
-        Debug.Log(DoorScript.isOpened);
-        Debug.Log(IsEnteredElevator.isEntered);
+        //Debug.Log(DoorScript.isOpened);
+        //Debug.Log(IsEnteredElevator.isEntered);
         if (other.gameObject == player)
         {
             //Debug.Log("Teleporting player");
             if(DoorScript.isOpened && IsEnteredElevator.isEntered){
                 ElevatorTrigger.SetActive(true);
-                TeleportPlayer();
+                StartCoroutine(TeleportPlayer());
+                //TeleportPlayer();
                 IsEnteredElevator.Reset();
                 DoorScript.Reset();
             }else{
-                ElevatorTrigger.SetActive(false);
+                StartCoroutine(Ondelay());
             }
         }
     }
 
-    void TeleportPlayer()
+    IEnumerator TeleportPlayer()
     {
+        yield return new WaitForSeconds(0.05f);
         Transform selectedRealCorridor = realCorridors[Random.Range(0, realCorridors.Length)];
 
         Vector3 playerRelativePosition = fakeCorridor.InverseTransformPoint(player.transform.position);
@@ -106,7 +108,11 @@ public class TeleportController : MonoBehaviour
         player.transform.rotation = newPlayerRotation;
 
         controller.enabled = true;
+        StartCoroutine(Ondelay());
+    }
 
-        //Debug.Log("Teleported to new position: " + player.transform.position);
+    IEnumerator Ondelay(){
+        yield return new WaitForSeconds(2f);
+        ElevatorTrigger.SetActive(false);
     }
 }
