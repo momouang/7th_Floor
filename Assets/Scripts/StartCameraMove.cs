@@ -19,7 +19,7 @@ public class StartCameraMove : MonoBehaviour
 
     public Animator DoorAnimation;
 
-    public static bool isControllable = false;
+    public static bool isPlayerControllable = false;
 
     void Start()
     {
@@ -63,7 +63,7 @@ public class StartCameraMove : MonoBehaviour
             //GameCam.Priority = 0;
             PlayerCam.Priority = startUICamPriority ;
 
-            isControllable = true;
+            isPlayerControllable = true;
         }
     }
 }

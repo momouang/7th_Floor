@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         //StartCoroutine(TransitPlayer());
         SceneManager.LoadScene(0);
+        StartCameraMove.isPlayerControllable = false;
 
     }
 
