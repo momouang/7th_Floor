@@ -8,6 +8,7 @@ public class ElevatorTrigger : MonoBehaviour
     public UnityEvent OnTriggered;
     public UnityEvent OnDelayed;
     public bool isTriggered = false;
+    public bool is08Button;
 
     public float waitTime = 1f;
 
@@ -26,7 +27,7 @@ public class ElevatorTrigger : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && is08Button)
         {
             if(isTriggered)
             {
