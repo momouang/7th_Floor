@@ -14,11 +14,16 @@ public class LE2 : MonoBehaviour
     private bool test1= false;
     private bool test2 = true;
 
+    public GameObject lightGameObject;
+
+    private Light[] lightComponents;
+
     private bool oknow = false;
     void Start()
     {
         // 初始化时记录玩家的当前X坐标
         lastXPosition = player.position.x;
+        lightComponents = lightGameObject.GetComponentsInChildren<Light>();
     }
 
     void Update()
@@ -78,6 +83,13 @@ public class LE2 : MonoBehaviour
     public void Oknnow()
     {
         oknow = true;
+        if (lightComponents != null)
+        {
+            foreach (Light light in lightComponents)
+            {
+                light.enabled = false;
+            }
+        }
         object11.SetActive(false);
     }
 
