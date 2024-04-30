@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void MouseControl()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     IEnumerator TransitPlayer()
     {
         yield return new WaitForSeconds(0.1f);

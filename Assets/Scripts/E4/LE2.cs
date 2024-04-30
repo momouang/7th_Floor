@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LE2 : MonoBehaviour
 {
-    public Transform player; // Íæ¼ÒµÄTransform×é¼þ
+    public Transform player; // ï¿½ï¿½Òµï¿½Transformï¿½ï¿½ï¿½
     public Transform object1;
-    public GameObject object11;// ÓÎÏ·ÖÐµÄÎïÌå1
-    public Transform object2; // ÓÎÏ·ÖÐµÄÎïÌå2
-    private float lastXPosition; // ÉÏÒ»Ö¡Íæ¼ÒµÄX×ø±ê
+    public GameObject object11;// ï¿½ï¿½Ï·ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½1
+    public Transform object2; // ï¿½ï¿½Ï·ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½2
+    private float lastXPosition; // ï¿½ï¿½Ò»Ö¡ï¿½ï¿½Òµï¿½Xï¿½ï¿½ï¿½ï¿½
     private bool isCollidingWithCollider1 = false;
     private bool isCollidingWithCollider2 = false;
     private bool test1= false;
@@ -21,16 +21,16 @@ public class LE2 : MonoBehaviour
     private bool oknow = false;
     void Start()
     {
-        // ³õÊ¼»¯Ê±¼ÇÂ¼Íæ¼ÒµÄµ±Ç°X×ø±ê
+        // ï¿½ï¿½Ê¼ï¿½ï¿½Ê±ï¿½ï¿½Â¼ï¿½ï¿½ÒµÄµï¿½Ç°Xï¿½ï¿½ï¿½ï¿½
         lastXPosition = player.position.x;
-        lightComponents = lightGameObject.GetComponentsInChildren<Light>();
+        //lightComponents = lightGameObject.GetComponentsInChildren<Light>();
     }
 
     void Update()
     {
         if (!oknow)
         {
-            // ¼ì²âÍæ¼ÒX×ø±ê±ä»¯
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ä»¯
 
             if (isCollidingWithCollider1 && test1)
             {
@@ -47,7 +47,7 @@ public class LE2 : MonoBehaviour
                 test1 = true;
             }
 
-            // ¸üÐÂÉÏÒ»Ö¡µÄX×ø±êÖµ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ö¡ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½Öµ
         }
         
     }

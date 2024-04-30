@@ -20,23 +20,25 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+    public bool isPlayerCanMove = true;
+
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y <0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
-        if (StartCameraMove.isPlayerControllable)
+        if (StartCameraMove.isPlayerControllable && isPlayerCanMove)
         {
             float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+            float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+            Vector3 move = transform.right * x + transform.forward * z;
 
-        
+
             controller.Move(move * speed * Time.deltaTime);
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
@@ -53,11 +55,23 @@ public class Player : MonoBehaviour
                 isPlayedFootstep = false;
             }
         }
-   
 
-        if(GameManager.isPaused)
+
+        if (GameManager.isPaused && !isPlayerCanMove)
         {
             footStep.Stop();
         }
-        }
+
+    }
+
+    public void IsInEnding()
+    {
+        isPlayerCanMove = false;
+    }
+
+    public void ReturnToLobby()
+    {
+        isPlayerCanMove = true;
+    }
 }
+
