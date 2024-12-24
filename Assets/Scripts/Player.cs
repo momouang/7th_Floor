@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     bool isGrounded;
 
     public bool isPlayerCanMove = true;
+    public Animator anim;
 
     private void Update()
     {
@@ -53,6 +54,16 @@ public class Player : MonoBehaviour
             {
                 footStep.Stop();
                 isPlayedFootstep = false;
+            }
+
+            if(x != 0 || z != 0)
+            {
+                anim.SetFloat("isWalking", 1);
+            }
+
+            if (x == 0 && z == 0)
+            {
+                anim.SetFloat("isWalking", 0);
             }
         }
 

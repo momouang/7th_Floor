@@ -21,12 +21,16 @@ public class StartCameraMove : MonoBehaviour
 
     public static bool isPlayerControllable = false;
 
+    public GameObject playerBody;
+    public GameObject player;
+
     void Start()
     {
         //GameCam.Priority = gameCamPriority;
         StartUICam.Priority = startUICamPriority;
         PlayerCam.Priority = PlayerCamPriority;
         //Time.timeScale = 0f;
+        playerBody.SetActive(false);
     }
 
     void Update()
@@ -40,6 +44,7 @@ public class StartCameraMove : MonoBehaviour
     public void SwitchCameras()
     {
         StartCoroutine(FadeOutStart());
+        
     }
 
     private IEnumerator FadeOutStart()
@@ -64,6 +69,7 @@ public class StartCameraMove : MonoBehaviour
             PlayerCam.Priority = startUICamPriority ;
 
             isPlayerControllable = true;
+            playerBody.SetActive(true);
         }
     }
 }
