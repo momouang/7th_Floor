@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4125471728267972529, guid: 273b37bbfe8604517b15bb7fa5d34d74, type: 3}
+  - {fileID: 2100000, guid: 2aded7cfe3aef48229da76122b86532a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,7 +141,15 @@ MonoBehaviour:
   OneSecondCommand:
     m_PersistentCalls:
       m_Calls: []
+  OneThirdCommand:
+    m_PersistentCalls:
+      m_Calls: []
+  isTriggered: 0
+  isDoorOpened: 0
+  isMultipleButton: 0
+  isNo8Elevator: 0
   waitTime: 1
+  isEnteredElevator: {fileID: 0}
 --- !u!82 &-1781403534172086277
 AudioSource:
   m_ObjectHideFlags: 0
