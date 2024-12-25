@@ -48,11 +48,8 @@ public class ElevatorSimple : MonoBehaviour
 
     private void Update()
     {
-        anim.SetFloat("Speed",(_length/_travelTime));
-        if(_goesDown)
-        {
-            anim.SetFloat("Speed", -(_length / _travelTime));
-        }
+        var moveSpeed = (_goesDown) ? -(_length / _travelTime) : (_length / _travelTime);
+        anim.SetFloat("Speed", moveSpeed);
     }
 
     private void FixedUpdate()
