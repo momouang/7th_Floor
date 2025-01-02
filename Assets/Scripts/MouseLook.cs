@@ -6,6 +6,7 @@ public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
     public Transform playerBody;
+    public bool canLook = true;
     float xRotation = 0f;
 
     void Start()
@@ -15,7 +16,7 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        if(StartCameraMove.isPlayerControllable)
+        if(canLook)
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if (StartCameraMove.isPlayerControllable && isPlayerCanMove)
+        if (isPlayerCanMove)
         {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
