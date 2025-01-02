@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void MouseControl()
     {
         Cursor.lockState = CursorLockMode.None;

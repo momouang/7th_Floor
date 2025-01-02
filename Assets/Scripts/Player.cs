@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public CharacterController controller;
+    public Rigidbody rb;
 
     public float speed = 12f;
     public float gravity = -9.8f;
@@ -37,20 +38,16 @@ public class Player : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            Vector3 move = transform.right * x + transform.forward * z;
+            RBMove(x,z);
+            //CCMove(x,z);
 
-
-            controller.Move(move * speed * Time.deltaTime);
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-
-            if (move.magnitude >= 0.1 && !isPlayedFootstep)
+            if (new Vector2(x,z).magnitude >= 0.1 && !isPlayedFootstep)
             {
                 footStep.Play();
                 isPlayedFootstep = true;
             }
 
-            if (move.magnitude < 0.01 && isPlayedFootstep)
+            if (new Vector2(x, z).magnitude < 0.01 && isPlayedFootstep)
             {
                 footStep.Stop();
                 isPlayedFootstep = false;
@@ -73,6 +70,27 @@ public class Player : MonoBehaviour
             footStep.Stop();
         }
 
+    }
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+    private void CCMove(float x,float z)
+    {
+        Vector3 move = transform.right * x + transform.forward * z;
+
+
+        controller.Move(move * speed * Time.deltaTime);
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void RBMove(float x, float z)
+    {
+        Vector3 move = (transform.right * x + transform.forward * z) * speed;
+        rb.velocity = new Vector3(move.x,rb.velocity.y,move.z);
     }
 
     public void IsInEnding()
