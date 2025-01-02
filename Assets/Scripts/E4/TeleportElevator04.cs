@@ -5,7 +5,7 @@ public class TeleportElevator04 : MonoBehaviour
     public Transform fakeCorridor; 
     public Transform realCorridor; 
     public GameObject player; 
-    private CharacterController controller; // CharacterController 
+    private CharacterController controller; // CharacterController
 
     private void Start()
     {
@@ -36,14 +36,14 @@ public class TeleportElevator04 : MonoBehaviour
         Quaternion newPlayerRotation = realCorridor.rotation * playerRelativeRotation;
 
         // CharacterController
-        controller.enabled = false;
+        //controller.enabled = false;
 
         //
         player.transform.position = newPlayerPosition;
         player.transform.rotation = newPlayerRotation;
 
         // CharacterController
-        controller.enabled = true;
+        //controller.enabled = true;
 
         Debug.Log("Teleported to new position: " + player.transform.position);
     }
