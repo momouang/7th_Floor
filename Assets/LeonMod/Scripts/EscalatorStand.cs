@@ -27,6 +27,7 @@ public class EscalatorStand : MonoBehaviour
             transform.SetParent(null);
             currentStep = null;
             isStepped = false;
+            transform.localScale = Vector3.one;
         }
     }
 
