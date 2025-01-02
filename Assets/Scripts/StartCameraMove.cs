@@ -24,6 +24,9 @@ public class StartCameraMove : MonoBehaviour
     public GameObject playerBody;
     public GameObject player;
 
+    public MouseLook mouseLook;
+    public Player playerScript;
+
     void Start()
     {
         //GameCam.Priority = gameCamPriority;
@@ -70,6 +73,12 @@ public class StartCameraMove : MonoBehaviour
 
             isPlayerControllable = true;
             playerBody.SetActive(true);
+            
+            if(mouseLook!=null)
+                mouseLook.canLook = true;
+
+            if(playerScript!=null)
+                playerScript.isPlayerCanMove = true;
         }
     }
 }
