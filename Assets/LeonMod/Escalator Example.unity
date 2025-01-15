@@ -489,6 +489,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &1422834999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6706249537195480919, guid: 5df294083e87276408ab37e3bc4631cb, type: 3}
+  m_PrefabInstance: {fileID: 1896893946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59146b9af86831d4aa4f174e35f7f656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1896893946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -540,6 +551,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6706249537195480919, guid: 5df294083e87276408ab37e3bc4631cb, type: 3}
+      propertyPath: MoveVelocity
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6709733157251096122, guid: 5df294083e87276408ab37e3bc4631cb, type: 3}
       propertyPath: m_Name
       value: LeonMod Escalator_a_01_up
@@ -560,6 +575,7 @@ GameObject:
   - component: {fileID: 1948951999}
   - component: {fileID: 1948951998}
   - component: {fileID: 1948952003}
+  - component: {fileID: 1948952004}
   m_Layer: 0
   m_Name: Fake Player
   m_TagString: Untagged
@@ -654,7 +670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948951997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalPosition: {x: -1.417, y: 1.3, z: 0}
   m_LocalScale: {x: 0.2, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -673,3 +689,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fd1cbd6b729d744822fcd05695e7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1948952004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948951997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a31f8d1ccdbd4aeebc05dce9ed1f290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  rb: {fileID: 0}
+  speed: 12
+  gravity: -9.8
+  startDelayTime: 2
+  groundCheck: {fileID: 0}
+  groundDistance: 0.4
+  footStep: {fileID: 0}
+  isPlayedFootstep: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isPlayerCanMove: 1
+  anim: {fileID: 0}
+--- !u!1001 &1215183212982259318
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850250, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215183214338850253, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: escalator
+      value: 
+      objectReference: {fileID: 1422834999}
+    - target: {fileID: 1215183214338850255, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
+      propertyPath: m_Name
+      value: EscalatorPuzzle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fe44bbdae132be4897a965ad3f0efc9, type: 3}
