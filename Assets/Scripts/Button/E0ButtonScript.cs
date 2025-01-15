@@ -24,6 +24,8 @@ public class E0ButtonScript : MonoBehaviour
     public GameObject BrokenLevel;
     public GameObject BrokenLevel02;
     public GameObject E1;
+    public GameObject Screen01;
+    public GameObject Screen02;
 
     private void OnMouseUpAsButton()
     {
@@ -44,11 +46,14 @@ public class E0ButtonScript : MonoBehaviour
         if (OpenCount == 1)
         {
             StartCoroutine(ChangeBrokenLevel());
+            Screen02.SetActive(false);
         }
 
         if (OpenCount == 2)
         {
             StartCoroutine(ChangeBrokenLevel02());
+            Screen01.SetActive(false);
+            Screen02.SetActive(true);
         }
 
         if(OpenCount == 3)
@@ -57,6 +62,7 @@ public class E0ButtonScript : MonoBehaviour
             Door02.isDoorNeedClose = false;
         }
     }
+
 
     IEnumerator WaitOneSecondandDo()
     {
@@ -91,4 +97,5 @@ public class E0ButtonScript : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         //E1.SetActive(true);
     }
+
 }

@@ -1122,6 +1122,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5776555277750235998}
     m_Modifications:
+    - target: {fileID: 6017173922950601760, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017173922950601760, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017173922950601760, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
     - target: {fileID: 6017173922950601766, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
       propertyPath: m_Name
       value: Center
@@ -1161,6 +1173,18 @@ PrefabInstance:
     - target: {fileID: 6017173922950601767, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017173922950601767, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.12202756
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017173922950601767, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.12202756
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017173922950601767, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.12202756
       objectReference: {fileID: 0}
     - target: {fileID: 6017173922950601767, guid: 6a07a14f971c7467ab94a7893ac4444b, type: 3}
       propertyPath: m_LocalPosition.x

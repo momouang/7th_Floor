@@ -102,12 +102,12 @@ public class TeleportController : MonoBehaviour
         Vector3 newPlayerPosition = selectedRealCorridor.TransformPoint(playerRelativePosition);
         Quaternion newPlayerRotation = selectedRealCorridor.rotation * playerRelativeRotation;
 
-        controller.enabled = false;
+        //controller.enabled = false;
 
         player.transform.position = newPlayerPosition;
         player.transform.rotation = newPlayerRotation;
 
-        controller.enabled = true;
+        //controller.enabled = true;
         StartCoroutine(Ondelay());
     }
 
