@@ -90,7 +90,7 @@ public class LE2 : MonoBehaviour
                 light.enabled = false;
             }
         }
-        object11.SetActive(false);
+        //object11.SetActive(false);
     }
 
 }

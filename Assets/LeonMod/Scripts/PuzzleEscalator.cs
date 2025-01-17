@@ -6,7 +6,11 @@ public class PuzzleEscalator : MonoBehaviour
 {
     public AudioSource sfx;
 
+    public Animator anim;
+
     public EscalatorModded escalator;
+
+    public AudioSource aud;
 
     public float speedOverride = -.1f;
 
@@ -90,6 +94,12 @@ public class PuzzleEscalator : MonoBehaviour
             currentTime -= Time.deltaTime;
     }
 
+
+public void SetSolved(bool state)
+    {
+        isSolved = state;
+    }
+
     private void OnLimitBreak()
     {
         if (isBreak)
@@ -100,7 +110,8 @@ public class PuzzleEscalator : MonoBehaviour
         // Do your thing here.
         // ===================
 
-
+        aud.Play();
+        anim.SetTrigger("isStarting");
 
         // ===================
     }
