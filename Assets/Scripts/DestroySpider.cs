@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DestroySpider : MonoBehaviour
 {
+
+    public int destroyTime = 10;
+
+
     private void Start()
     {
         StartCoroutine(Destroying());
@@ -11,7 +15,7 @@ public class DestroySpider : MonoBehaviour
 
     IEnumerator Destroying()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(destroyTime);
 
         DeleteSpider();
     }

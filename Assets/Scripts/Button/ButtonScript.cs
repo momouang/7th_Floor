@@ -10,6 +10,8 @@ public class ButtonScript : MonoBehaviour
     public UnityEvent OneSecondCommand;
     public UnityEvent OneThirdCommand;
 
+    public bool Reopenable = false;
+
     public bool isTriggered;
     public bool isDoorOpened;
 
@@ -43,6 +45,7 @@ public class ButtonScript : MonoBehaviour
             if (!isTriggered && !isDoorOpened)
             {
                 isDoorOpened = true;
+
                 PressButton.Invoke();
                 StartCoroutine(WaitOneSecondandDo());
                 isTriggered = true;
@@ -59,5 +62,12 @@ public class ButtonScript : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
         OneThirdCommand.Invoke();
+
+
+        if (Reopenable)
+        {
+            isDoorOpened = false;
+            isTriggered = false;
+        }
     }
 }

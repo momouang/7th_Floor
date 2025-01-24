@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class E07 : MonoBehaviour
 {
+    public Animator doorAnim;
     public Transform door1;
     public Transform door2;
     public AudioSource audioSource1;
@@ -82,10 +83,10 @@ public class E07 : MonoBehaviour
             Invoke("CloseDoor", 7f);
             Invoke("time7", 7.5f);
             Invoke("OpenDoor", 7.7f);
-            Invoke("CloseDoor", 8.2f);
-            Invoke("allD", 8.7f);
-            Invoke("OpenDoor3", 10.2f);
-            Invoke("OpenDoor", 10.7f);
+            Invoke("CloseDoor", 8.4f);
+            Invoke("allD", 8.9f);
+            Invoke("OpenDoor3", 10.4f);
+            Invoke("OpenDoor", 10.9f);
             okok = true;
         }     
     }
@@ -141,74 +142,87 @@ public class E07 : MonoBehaviour
 
     public void OpenDoor()
     {
-        StartCoroutine(DoorPositions1());
+        doorAnim.SetBool("open",true);
+        //StartCoroutine(DoorPositions1());
         audioSource1.Play();
 
     }
 
     public void CloseDoor()
     {
-        StartCoroutine(DoorPositions2());
+        doorAnim.SetBool("open",false);
+        //StartCoroutine(DoorPositions2());
         audioSource2.Play();
     }
 
     IEnumerator DoorPositions1()
     {
-        float duration = 0.5f; // ��������ʱ�䣬1��
-        float elapsed = 0.0f; // �Ѿ�����ʱ��
-        float distance = 1.04f; // �ƶ��ľ���
+        // 首先获取 door1 和 door2 的初始位置
+        Vector3 door1StartPosition = door1.position; // Door1 初始位置
+        Vector3 door2StartPosition = door2.position; // Door2 初始位置
 
-        Vector3 door1StartPosition = door1.position; // Door1��ʼλ��
-        Vector3 door2StartPosition = door2.position; // Door2��ʼλ��
+        // 确保门的起始位置是正确的
+        door1.position = door1StartPosition; // 将 door1 重置为初始位置
+        door2.position = door2StartPosition; // 将 door2 重置为初始位置
+
+        float duration = 0.5f; // 开关门动画时长，1秒
+        float elapsed = 0.0f; // 已经过的时间
+        float distance = 1.04f; // 移动的距离
 
         Vector3 door1EndPosition = new Vector3(door1StartPosition.x, door1StartPosition.y, door1StartPosition.z + distance);
         Vector3 door2EndPosition = new Vector3(door2StartPosition.x, door2StartPosition.y, door2StartPosition.z - distance);
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime; // �����ѹ�ʱ��
-            float fraction = elapsed / duration; // ������ɵĲ���
+            elapsed += Time.deltaTime; // 累加已过时间
+            float fraction = elapsed / duration; // 计算动画的进度
 
-            // ʹ��Lerp���Բ�ֵ���㵱ǰλ��
+            // 使用 Lerp 进行平滑过渡
             door1.position = Vector3.Lerp(door1StartPosition, door1EndPosition, fraction);
             door2.position = Vector3.Lerp(door2StartPosition, door2EndPosition, fraction);
 
             yield return null;
         }
 
-        // ȷ����ѭ������ʱ�ŵ�λ�þ�ȷ����
+        // 确保最后的门的位置是准确的
         door1.position = door1EndPosition;
         door2.position = door2EndPosition;
     }
 
     IEnumerator DoorPositions2()
     {
-        float duration = 0.5f; // ��������ʱ�䣬1��
-        float elapsed = 0.0f; // �Ѿ�����ʱ��
-        float distance = 1.04f; // �ƶ��ľ���
+        // 首先获取 door1 和 door2 的初始位置
+        Vector3 door1StartPosition = door1.position; // Door1 初始位置
+        Vector3 door2StartPosition = door2.position; // Door2 初始位置
 
-        Vector3 door1StartPosition = door1.position; // Door1��ʼλ��
-        Vector3 door2StartPosition = door2.position; // Door2��ʼλ��
+        // 确保门的起始位置是正确的
+        door1.position = door1StartPosition; // 将 door1 重置为初始位置
+        door2.position = door2StartPosition; // 将 door2 重置为初始位置
+
+        float duration = 0.5f; // 开关门动画时长，1秒
+        float elapsed = 0.0f; // 已经过的时间
+        float distance = 1.04f; // 移动的距离
 
         Vector3 door1EndPosition = new Vector3(door1StartPosition.x, door1StartPosition.y, door1StartPosition.z - distance);
         Vector3 door2EndPosition = new Vector3(door2StartPosition.x, door2StartPosition.y, door2StartPosition.z + distance);
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime; // �����ѹ�ʱ��
-            float fraction = elapsed / duration; // ������ɵĲ���
+            elapsed += Time.deltaTime; // 累加已过时间
+            float fraction = elapsed / duration; // 计算动画的进度
 
-            // ʹ��Lerp���Բ�ֵ���㵱ǰλ��
+            // 使用 Lerp 进行平滑过渡
             door1.position = Vector3.Lerp(door1StartPosition, door1EndPosition, fraction);
             door2.position = Vector3.Lerp(door2StartPosition, door2EndPosition, fraction);
 
             yield return null;
         }
 
-        // ȷ����ѭ������ʱ�ŵ�λ�þ�ȷ����
+        // 确保最后的门的位置是准确的
         door1.position = door1EndPosition;
         door2.position = door2EndPosition;
     }
+
 
     IEnumerator FlickerLight()
     {

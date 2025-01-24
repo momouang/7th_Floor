@@ -12,7 +12,7 @@ public class BunnyLookAt : MonoBehaviour
         lookDirection = target.transform.position - transform.position;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         //lookDirection.y = 0;
         gameObject.transform.LookAt(target.transform.position);

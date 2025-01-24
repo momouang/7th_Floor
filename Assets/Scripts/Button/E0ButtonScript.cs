@@ -27,40 +27,51 @@ public class E0ButtonScript : MonoBehaviour
     public GameObject Screen01;
     public GameObject Screen02;
 
+    private bool isOperating = false;
+
     private void OnMouseUpAsButton()
     {
-        if(!isTriggered && Door01.isControllable && Door02.isClosed)
+        if (isOperating)
+            return;
+
+        isOperating = true;
+        StartCoroutine(CoolDownTime());
+
+        if (OpenCount >= 3)
+        {
+            OpenCount = 3;
+            isTriggered = true;
+        }
+
+        if (!isTriggered && Door01.isControllable && Door02.isClosed)
         {
             PressButton.Invoke();
             StartCoroutine(WaitOneSecondandDo());
-            OpenCount++;
-            isPressed = true;
 
-            if(OpenCount >= 3)
-            {
-                StartCoroutine(OpenDoor());
-                isTriggered = true;
-            }
         }
 
-        if (OpenCount == 1)
+        if (!isTriggered && OpenCount == 0)
         {
             StartCoroutine(ChangeBrokenLevel());
-            Screen02.SetActive(false);
         }
 
-        if (OpenCount == 2)
+        if (!isTriggered && OpenCount == 1)
         {
+            StartCoroutine(CoolDownTime());
             StartCoroutine(ChangeBrokenLevel02());
-            Screen01.SetActive(false);
-            Screen02.SetActive(true);
+            Screen01.GetComponent<MeshRenderer>().enabled = false;
+            Screen02.GetComponent<MeshRenderer>().enabled = true;
         }
 
-        if(OpenCount == 3)
+        if(!isTriggered && OpenCount == 2)
         {
             StartCoroutine(SetActiveElevator());
+            StartCoroutine(OpenDoor());
             Door02.isDoorNeedClose = false;
         }
+
+        OpenCount++;
+        isPressed = true;
     }
 
 
@@ -96,6 +107,12 @@ public class E0ButtonScript : MonoBehaviour
         BrokenLevel02.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         //E1.SetActive(true);
+    }
+
+    IEnumerator CoolDownTime()
+    {
+        yield return new WaitForSeconds(5f);
+        isOperating = false;
     }
 
 }
