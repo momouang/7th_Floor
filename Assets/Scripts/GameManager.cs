@@ -11,23 +11,34 @@ public class GameManager : MonoBehaviour
 
     public static bool isPaused;
 
+    public bool DebugMode = false;
+
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            if (DebugMode)
+                return;
+
             isPaused = !isPaused;
+            CheckPause(isPaused);
         }
 
-        if(isPaused)
+        
+    }
+
+    private void CheckPause(bool _isPause)
+    {
+        if (_isPause)
         {
-            
+
             pauseScene.SetActive(true);
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
 
             AudioListener.pause = true;
-            
+
         }
         else
         {
