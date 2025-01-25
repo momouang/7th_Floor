@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
 
     public float speed = 12f;
+    public float runSpeed = 18f;
     public float gravity = -9.8f;
     public float startDelayTime = 2f;
 
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     public float groundDistance = 0.4f;
 
     public AudioSource footStep;
+    public AudioClip clipWalk, clipRun;
     public bool isPlayedFootstep;
     public LayerMask groundMask;
 
@@ -24,9 +26,16 @@ public class Player : MonoBehaviour
     public bool isPlayerCanMove = true;
     public Animator anim;
 
+    private bool isRunning = false;
+
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isRunning = (Input.GetKey(KeyCode.LeftShift));
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            SetRunning(true);
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            SetRunning(false);
 
         if (isGrounded && velocity.y < 0)
         {
@@ -89,8 +98,23 @@ public class Player : MonoBehaviour
 
     private void RBMove(float x, float z)
     {
-        Vector3 move = (transform.right * x + transform.forward * z) * speed;
+        float finalSpeed = (isRunning) ? runSpeed : speed;
+        Vector3 move = (transform.right * x + transform.forward * z) * finalSpeed;
         rb.velocity = new Vector3(move.x,rb.velocity.y,move.z);
+    }
+
+    private void SetRunning(bool state)
+    {
+        bool currentState = isRunning;
+        isRunning = state;
+
+        footStep.clip = (isRunning) ? clipRun : clipWalk;
+
+        footStep.Play();
+        if (currentState != isRunning)
+        {
+            Debug.Log("State");
+        }
     }
 
     public void IsInEnding()

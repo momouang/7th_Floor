@@ -57,10 +57,10 @@ public class ButtonScript : MonoBehaviour
 
     IEnumerator WaitOneSecondandDo()
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(1f);
         OneSecondCommand.Invoke();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(waitTime);
         OneThirdCommand.Invoke();
 
 

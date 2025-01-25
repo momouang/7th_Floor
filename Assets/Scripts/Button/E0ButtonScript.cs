@@ -23,6 +23,7 @@ public class E0ButtonScript : MonoBehaviour
     [Header("Trigger Objects")]
     public GameObject BrokenLevel;
     public GameObject BrokenLevel02;
+    public GameObject BackBlocker;
     public GameObject E1;
     public GameObject Screen01;
     public GameObject Screen02;
@@ -37,9 +38,9 @@ public class E0ButtonScript : MonoBehaviour
         isOperating = true;
         StartCoroutine(CoolDownTime());
 
-        if (OpenCount >= 3)
+        if (OpenCount >= 2)
         {
-            OpenCount = 3;
+            OpenCount = 2;
             isTriggered = true;
         }
 
@@ -52,19 +53,22 @@ public class E0ButtonScript : MonoBehaviour
 
         if (!isTriggered && OpenCount == 0)
         {
+            Debug.Log("F0");
             StartCoroutine(ChangeBrokenLevel());
         }
 
-        if (!isTriggered && OpenCount == 1)
+        if (!isTriggered && OpenCount == 2) // Deprycated.
         {
+            Debug.Log("F2");
             StartCoroutine(CoolDownTime());
             StartCoroutine(ChangeBrokenLevel02());
             Screen01.GetComponent<MeshRenderer>().enabled = false;
             Screen02.GetComponent<MeshRenderer>().enabled = true;
         }
 
-        if(!isTriggered && OpenCount == 2)
+        if(!isTriggered && OpenCount == 1)
         {
+            Debug.Log("F1");
             StartCoroutine(SetActiveElevator());
             StartCoroutine(OpenDoor());
             Door02.isDoorNeedClose = false;
@@ -72,6 +76,14 @@ public class E0ButtonScript : MonoBehaviour
 
         OpenCount++;
         isPressed = true;
+    }
+
+    public void BlockBackward(float time) => StartCoroutine(BlockBackwardIE(time));
+
+    IEnumerator BlockBackwardIE(float time)
+    {
+        yield return new WaitForSeconds(time);
+        BackBlocker.SetActive(true);
     }
 
 
@@ -102,6 +114,8 @@ public class E0ButtonScript : MonoBehaviour
 
     IEnumerator SetActiveElevator()
     {
+        BrokenLevel.SetActive(false);
+        BrokenLevel02.SetActive(false);
         yield return new WaitForSeconds(2f);
         
         BrokenLevel02.SetActive(false);
@@ -111,7 +125,7 @@ public class E0ButtonScript : MonoBehaviour
 
     IEnumerator CoolDownTime()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
         isOperating = false;
     }
 

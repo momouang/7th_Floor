@@ -16,10 +16,20 @@ public class NormalButton : MonoBehaviour
     public bool isTriggered;
     public bool isDoorOpened;
 
+    public float CooldownTime = 8f;
+
+    private bool isOperating = false;
+
 
 
     private void OnMouseUpAsButton()
     {
+        if (isOperating)
+            return;
+
+        isOperating = true;
+        StartCoroutine(CooldownIE());
+
         if(SevenButton.OpenCount <3)
         {
             if (Door1.isControllable && Door2.isClosed && !SevenButton.isPressed)
@@ -38,5 +48,11 @@ public class NormalButton : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         OneSecondCommand.Invoke();
+    }
+
+    IEnumerator CooldownIE()
+    {
+        yield return new WaitForSeconds(CooldownTime);
+        isOperating = false;
     }
 }

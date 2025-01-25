@@ -3948,11 +3948,14 @@ MonoBehaviour:
   controller: {fileID: 8190211348746818149}
   rb: {fileID: 8860995450660959752}
   speed: 4
+  runSpeed: 8
   gravity: -9.8
   startDelayTime: 2
   groundCheck: {fileID: 427304683907363492}
   groundDistance: 0.4
   footStep: {fileID: 815694388855392825}
+  clipWalk: {fileID: 8300000, guid: 9cf0060e4df6143fa9f9e60437873251, type: 3}
+  clipRun: {fileID: 8300000, guid: f3e1b4181c8e24b6bbea567dfd6a1b29, type: 3}
   isPlayedFootstep: 0
   groundMask:
     serializedVersion: 2
