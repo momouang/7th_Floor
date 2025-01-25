@@ -16,16 +16,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (DebugMode)
+            return;
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (DebugMode)
-                return;
-
             isPaused = !isPaused;
-            CheckPause(isPaused);
         }
 
-        
+        CheckPause(isPaused);
+
     }
 
     private void CheckPause(bool _isPause)
